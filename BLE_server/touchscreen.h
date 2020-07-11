@@ -4,6 +4,7 @@
 #include "time.h"
 #include "accel.h"
 #include "power.h"
+#include "bluetooth.h"
 
 #include <TTGO.h>
 

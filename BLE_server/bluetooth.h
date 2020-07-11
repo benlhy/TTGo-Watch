@@ -23,6 +23,7 @@ void setup_ble() {
   BLEDevice::init("ESP32");
   BLEServer *pServer = BLEDevice::createServer();
   BLEService *pService = pServer->createService(INDOOR_LOCATION);
+
   BLECharacteristic *pCharacteristic = pService->createCharacteristic(
                                          CHARACTERISTIC_UUID,
                                          BLECharacteristic::PROPERTY_READ |
@@ -30,13 +31,17 @@ void setup_ble() {
                                        );
 
   pCharacteristic->setValue("Hello World says Neil");
+
+
+
+
   pService->start();
   // BLEAdvertising *pAdvertising = pServer->getAdvertising();  // this still is working for backward compatibility
   BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
   pAdvertising->addServiceUUID(SERVICE_UUID);
   pAdvertising->setScanResponse(true);
-  pAdvertising->setMinPreferred(0x06);  // functions that help with iPhone connections issue
-  pAdvertising->setMinPreferred(0x12);
+  pAdvertising->setMinPreferred(0x100);  // functions that help with iPhone connections issue
+  //pAdvertising->setMinPreferred(0x12);  // interval x 0.625 = interval in ms.
   BLEDevice::startAdvertising();
   Serial.println("Characteristic defined! Now you can read it in your phone!");
 
