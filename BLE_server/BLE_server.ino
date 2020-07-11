@@ -13,6 +13,8 @@
 #include <TTGO.h>
 #include "time.h"
 #include "touchscreen.h"
+#include "accel.h"
+#include "power.h"
 
 TTGOClass *ttgo;
 
@@ -58,6 +60,7 @@ void loop() {
   delay(5);
   get_touch(ttgo);
   draw_screen(ttgo);
+  process_power_irq(ttgo);
 }
 
 
@@ -67,6 +70,8 @@ void ttgo_init() {
   ttgo->openBL();
   ttgo->lvgl_begin();
   setup_rtc(ttgo);
+  setup_bma(ttgo);
+  setup_power(ttgo);
 }
 
 

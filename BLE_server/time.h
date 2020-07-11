@@ -44,17 +44,18 @@ void setup_rtc(TTGOClass* ttgo){
 }
 
 void draw_time(TTGOClass* ttgo) {
-    byte xpos = 6;
-    byte ypos = 0;
+    byte xpos = 40;
+    byte ypos = 80;
     char buf[128];
 
     ttgo->eTFT->setTextColor(0x39C4, TFT_BLACK);  
     ttgo->eTFT->drawString("88:88", xpos, ypos, 7); // Overwrite the text to clear it
     ttgo->eTFT->setTextColor(0xFBE0, TFT_BLACK); // Orange
     
-
+    /*
     snprintf(buf, sizeof(buf), "%s", ttgo->rtc->formatDateTime());
     ttgo->eTFT->drawString(buf, 5, 118, 7);
+    */
 
     
     RTC_Date now = ttgo->rtc->getDateTime();
@@ -77,8 +78,8 @@ void draw_time(TTGOClass* ttgo) {
 
 
 void update_time(TTGOClass* ttgo) {
-    byte xpos = 6;
-    byte ypos = 0;
+    byte xpos = 40;
+    byte ypos = 80;
     /*
     snprintf(buf, sizeof(buf), "%s", ttgo->rtc->formatDateTime());
     ttgo->eTFT->drawString(buf, 5, 118, 7);*/
